@@ -34,7 +34,7 @@ export function Footer() {
       >
         {tx(lang,
           'Your presence is the greatest gift of all. We are endlessly grateful to share this moment with you.',
-          'حضوركم هو أحلى هدية. شاكرينكم من قلبنا على مشاركتنا اللحظة دي.',
+          'وجودكم معانا هو أجمل هدية.',
         )}
       </p>
 
