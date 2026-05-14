@@ -23,10 +23,10 @@ export function RsvpSection() {
     e.preventDefault()
     setError('')
 
-    if (!form.name.trim()) { setError(tx(lang, 'Please enter your name.', 'يرجى إدخال اسمك.')); return }
-    if (!form.att)          { setError(tx(lang, 'Please choose attendance type.', 'يرجى اختيار نوع الحضور.')); return }
+    if (!form.name.trim()) { setError(tx(lang, 'Please enter your name.', 'اكتب اسمك الأول.')); return }
+    if (!form.att)          { setError(tx(lang, 'Please choose attendance type.', 'اختار نوع الحضور.')); return }
     if (form.att === 'family' && (!form.partySize || Number(form.partySize) < 2)) {
-      setError(tx(lang, 'Please enter family size (min 2).', 'يرجى إدخال عدد أفراد العائلة (٢ على الأقل).')); return
+      setError(tx(lang, 'Please enter family size (min 2).', 'اكتب عدد الأفراد (٢ على الأقل).')); return
     }
 
     setLoading(true)
@@ -43,7 +43,7 @@ export function RsvpSection() {
       if (!res.ok) throw new Error('Server error')
       setDone(true)
     } catch {
-      setError(tx(lang, 'Something went wrong. Please try again.', 'حدث خطأ. يرجى المحاولة مرة أخرى.'))
+      setError(tx(lang, 'Something went wrong. Please try again.', 'في غلطة حصلت. حاول تاني.'))
     } finally {
       setLoading(false)
     }
@@ -68,8 +68,8 @@ export function RsvpSection() {
     <section id="rsvp" className="relative z-20 py-28 px-6 bg-parchment">
       <div className="max-w-xl mx-auto">
         <Reveal className="text-center">
-          <p className="block text-[0.68rem] tracking-[6px] uppercase text-gold/80 mb-5 font-heading">
-            {tx(lang, 'Will You Join Us?', 'هل ستنضمون إلينا؟')}
+          <p className="block text-[0.68rem] tracking-[6px] uppercase text-walnut mb-5 font-heading">
+            {tx(lang, 'Will You Join Us?', 'هتيجوا معانا؟')}
           </p>
           <h2
             className="font-heading font-light text-walnut mb-4"
@@ -86,7 +86,7 @@ export function RsvpSection() {
             {lang === 'en' ? (
               <>Please confirm your attendance by <strong className="text-walnut">June 15th, 2026</strong>.</>
             ) : (
-              <>يُرجى تأكيد حضوركم بحلول <strong className="text-walnut">١٥ يونيو ٢٠٢٦</strong>.</>
+              <>اتأكدوا من حضوركم قبل <strong className="text-walnut">١٥ يونيو ٢٠٢٦</strong>.</>
             )}
           </p>
         </Reveal>
@@ -100,13 +100,13 @@ export function RsvpSection() {
                 className="font-heading font-light text-walnut text-2xl mb-3"
                 style={{ fontStyle: lang === 'en' ? 'italic' : 'normal' }}
               >
-                {tx(lang, "You're confirmed!", 'تم تأكيدك!')}
+                {tx(lang, "You're confirmed!", 'اتأكدت!')}
               </h3>
               <p className="font-body text-walnut-muted" style={{ lineHeight: lang === 'ar' ? '2.3' : '2' }}>
                 {lang === 'en' ? (
                   <>Thank you — we cannot wait to celebrate with you.<br /><em>With love, Mahmoud &amp; Raghda</em></>
                 ) : (
-                  <>شكراً — لا يسعنا الانتظار للاحتفال معك.<br /><em>بكل المحبة، محمود ورغدة</em></>
+                  <>شكراً — مستنيينك أوي.<br /><em>بكل الحب، محمود ورغدة</em></>
                 )}
               </p>
             </div>
@@ -114,40 +114,40 @@ export function RsvpSection() {
             <form onSubmit={submit} noValidate className="space-y-7">
               {/* Name */}
               <div>
-                <label className="block text-[0.68rem] tracking-[4px] uppercase text-gold/80 mb-2 font-heading">
+                <label className="block text-[0.68rem] tracking-[4px] uppercase text-walnut mb-2 font-heading">
                   {tx(lang, 'Your Full Name', 'اسمك الكامل')}
                 </label>
                 <input
                   type="text"
                   value={form.name}
                   onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                  placeholder={tx(lang, 'Enter your name…', 'أدخل اسمك…')}
+                  placeholder={tx(lang, 'Enter your name…', 'اكتب اسمك…')}
                   className={inputCls}
                 />
               </div>
 
               {/* Attendance */}
               <div>
-                <label className="block text-[0.68rem] tracking-[4px] uppercase text-gold/80 mb-2 font-heading">
-                  {tx(lang, 'Attendance', 'نوع الحضور')}
+                <label className="block text-[0.68rem] tracking-[4px] uppercase text-walnut mb-2 font-heading">
+                  {tx(lang, 'Attendance', 'هتيجي إزاي؟')}
                 </label>
                 <div className="flex gap-3">
                   <button type="button" className={attBtnCls(form.att === 'solo')}
                     onClick={() => setForm(f => ({ ...f, att: 'solo', partySize: '' }))}>
-                    <span className="block font-semibold">{tx(lang, 'Just Me', 'بمفردي')}</span>
+                    <span className="block font-semibold">{tx(lang, 'Just Me', 'لوحدي')}</span>
                     <span className="block text-xs opacity-60 mt-0.5">{tx(lang, 'Individual', 'حضور فردي')}</span>
                   </button>
                   <button type="button" className={attBtnCls(form.att === 'family')}
                     onClick={() => setForm(f => ({ ...f, att: 'family' }))}>
-                    <span className="block font-semibold">{tx(lang, 'With Family', 'مع العائلة')}</span>
-                    <span className="block text-xs opacity-60 mt-0.5">{tx(lang, 'Bring loved ones', 'أحضر من تحب')}</span>
+                    <span className="block font-semibold">{tx(lang, 'With Family', 'مع العيلة')}</span>
+                    <span className="block text-xs opacity-60 mt-0.5">{tx(lang, 'Bring loved ones', 'جيب اللي بتحبه')}</span>
                   </button>
                 </div>
 
                 {form.att === 'family' && (
                   <div className="mt-4">
-                    <label className="block text-[0.68rem] tracking-[4px] uppercase text-gold/80 mb-2 font-heading">
-                      {tx(lang, 'Number of guests (including you)', 'عدد الأفراد (شاملاً أنت)')}
+                    <label className="block text-[0.68rem] tracking-[4px] uppercase text-walnut mb-2 font-heading">
+                      {tx(lang, 'Number of guests (including you)', 'عدد الأفراد (انت جوا)')}
                     </label>
                     <input
                       type="number" min="2" max="30"
@@ -178,7 +178,7 @@ export function RsvpSection() {
               >
                 {loading
                   ? tx(lang, 'Confirming…', 'جارٍ التأكيد…')
-                  : tx(lang, 'Confirm Attendance ✦', 'تأكيد الحضور ✦')}
+                  : tx(lang, 'Confirm Attendance ✦', 'أكد حضورك ✦')}
               </button>
             </form>
           )}

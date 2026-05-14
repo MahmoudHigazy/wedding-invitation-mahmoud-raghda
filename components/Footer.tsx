@@ -34,7 +34,7 @@ export function Footer() {
       >
         {tx(lang,
           'Your presence is the greatest gift of all. We are endlessly grateful to share this moment with you.',
-          'حضوركم هو أعظم هدية على الإطلاق. نحن ممتنون لا حدود لامتناننا لمشاركتكم هذه اللحظة.',
+          'حضوركم هو أحلى هدية. شاكرينكم من قلبنا على مشاركتنا اللحظة دي.',
         )}
       </p>
 
@@ -45,8 +45,8 @@ export function Footer() {
         <div className="h-px w-20 bg-gradient-to-l from-transparent to-gold/40" />
       </div>
 
-      <p className="text-[0.65rem] tracking-[4px] uppercase text-walnut-muted/40 font-heading">
-        {tx(lang, 'June 26 · 2026 · Taracina, Manial Shiha, Giza', '٢٦ يونيو · ٢٠٢٦ · تاراتشينا، منيل شيحة، الجيزة')}
+      <p className="text-[0.68rem] tracking-[4px] uppercase text-walnut-muted font-heading">
+        {tx(lang, 'June 26 · 2026 · Taracina, Manial Shiha, Giza', '٢٦ يونيو · ٢٠٢٦ · تاراسينا، منيل شيحة، الجيزة')}
       </p>
     </footer>
   )

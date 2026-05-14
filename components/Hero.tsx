@@ -29,8 +29,8 @@ export function Hero() {
       <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center">
 
         {/* ── Pre-title ── */}
-        <p className="h-a1 font-heading text-[0.72rem] tracking-[6px] uppercase text-gold mb-10">
-          {tx(lang, 'Together with their families', 'مع عائلتيهما الكريمتين')}
+        <p className="h-a1 font-heading text-[0.72rem] tracking-[6px] uppercase text-walnut mb-10">
+          {tx(lang, 'Together with their families', 'مع عيلتيهم الكريمة')}
         </p>
 
         {/* ── Couple names ── */}
@@ -67,7 +67,7 @@ export function Hero() {
         >
           {tx(lang,
             '"Two souls, one story — beginning forever"',
-            '«روحان، قصة واحدة — بداية أبدية»',
+            '«روحين، حكاية واحدة — وبداية للأبد»',
           )}
         </p>
 
@@ -106,10 +106,10 @@ export function Hero() {
 
           {/* Palindrome caption */}
           <p
-            className="font-body text-gold tracking-[4px] uppercase"
-            style={{ fontSize: '0.65rem', opacity: 0.7 }}
+            className="font-heading text-walnut tracking-[4px] uppercase"
+            style={{ fontSize: '0.72rem' }}
           >
-            {tx(lang, 'A date that mirrors itself', 'تاريخ يعكس نفسه')}
+            {tx(lang, 'A date that mirrors itself', 'تاريخ بيعكس نفسه')}
           </p>
 
           {/* Full written date */}

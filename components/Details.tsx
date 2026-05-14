@@ -9,31 +9,31 @@ const CARDS = [
     title:  ['Date & Time',             'التاريخ والوقت'],
     body:   [
       'Friday, June 26th, 2026\nCeremony: 6:00 PM\nReception: 8:00 PM onwards',
-      'الجمعة، ٢٦ يونيو ٢٠٢٦\nمراسم العقد: ٦:٠٠ مساءً\nحفل الاستقبال: ٨:٠٠ مساءً فصاعداً',
+      'الجمعة، ٢٦ يونيو ٢٠٢٦\nالعقد: الساعة ٦:٠٠ بالليل\nالحفلة: الساعة ٨:٠٠ بالليل',
     ],
   },
   {
     icon: '◈',
-    title:  ['Venue',                   'مكان الحفل'],
+    title:  ['Venue',                   'مكان الفرح'],
     body:   [
       'Taracina Wedding on the Nile\nManial Shiha, Giza\nA semi-island on the banks of the Nile',
-      'تاراتشينا — حفلات على النيل\nمنيل شيحة، الجيزة\nجزيرة صغيرة على ضفاف نهر النيل',
+      'تاراسينا — حفلات على النيل\nمنيل شيحة، الجيزة\nجزيرة صغيرة على ضفاف نهر النيل',
     ],
   },
   {
     icon: '◈',
-    title:  ['The Evening',             'أجواء الأمسية'],
+    title:  ['The Evening',             'أجواء الليلة'],
     body:   [
       'An open-air ceremony beneath the stars, surrounded by Nile views, swaying palms, and warm candlelight.',
-      'حفل مفتوح تحت النجوم، محاط بمشهد النيل ونخيل الجيزة وضوء الشموع الدافئ.',
+      'حفل في الهوا الطلق تحت النجوم، مع منظر النيل ونخيل الجيزة وضوء الشموع.',
     ],
   },
   {
     icon: '◈',
-    title:  ['Getting There',           'كيفية الوصول'],
+    title:  ['Getting There',           'إزاي توصل'],
     body:   [
       'Via Maadi (Cairo side):\nFree faluka crossing from Maadi Corniche — a scenic Nile boat ride to the venue.\n\nVia Manial Shiha (Giza side):\nCairo–Assiut Agricultural Road · 3 km south of Mounib Bridge\n~15 min from Dokki & Mohandessin',
-      'من المعادي (القاهرة):\nفلوكة مجانية من كورنيش المعادي — عبور النيل بالقارب إلى القاعة مباشرةً.\n\nمن منيل شيحة (الجيزة):\nطريق مصر–أسيوط الزراعي · ٣ كم جنوب كوبري المنيب\n~١٥ دقيقة من الدقي والمهندسين',
+      'من المعادي (القاهرة):\nفلوكة مجانية من كورنيش المعادي — تعدّي النيل بالقارب لحد القاعة.\n\nمن منيل شيحة (الجيزة):\nطريق مصر–أسيوط الزراعي · ٣ كم جنوب كوبري المنيب\n~ربع ساعة من الدقي والمهندسين',
     ],
   },
 ]
@@ -46,8 +46,8 @@ export function Details() {
     <section id="details" className="relative z-20 py-28 px-6 bg-parchment-mid">
       <div className="max-w-4xl mx-auto">
         <Reveal className="text-center mb-14">
-          <p className="text-[0.68rem] tracking-[6px] uppercase text-gold/80 mb-5 font-heading">
-            {tx(lang, 'Mark Your Calendar', 'دوّن الموعد في مفكّرتك')}
+          <p className="text-[0.72rem] tracking-[6px] uppercase text-walnut mb-5 font-heading">
+            {tx(lang, 'Mark Your Calendar', 'سجّل الموعد في أجندتك')}
           </p>
           <h2
             className="font-heading font-light text-walnut"
@@ -57,7 +57,7 @@ export function Details() {
               lineHeight: lang === 'ar' ? '1.55' : '1.1',
             }}
           >
-            {tx(lang, 'Event Details', 'تفاصيل الحفل')}
+            {tx(lang, 'Event Details', 'تفاصيل الفرح')}
           </h2>
           <div className="rule-gold mt-6 max-w-[120px] mx-auto" />
         </Reveal>
@@ -91,8 +91,8 @@ export function Details() {
 
         {/* Add to Calendar */}
         <Reveal className="mt-10 text-center">
-          <p className="text-[0.68rem] tracking-[5px] uppercase text-gold/70 mb-5 font-heading">
-            {tx(lang, 'Save the Date', 'أضف إلى تقويمك')}
+          <p className="text-[0.72rem] tracking-[5px] uppercase text-walnut mb-5 font-heading">
+            {tx(lang, 'Save the Date', 'ضيفه في التقويم')}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             {/* Google Calendar */}
@@ -135,7 +135,7 @@ export function Details() {
               <div className="px-5 py-3 bg-parchment/80 flex items-center gap-3">
                 <span className="text-gold/70 text-xs font-heading tracking-widest">◈</span>
                 <p className="font-heading text-walnut text-[0.78rem] tracking-[2px] uppercase">
-                  {tx(lang, 'Venue — Taracina, Manial Shiha', 'القاعة — تاراتشينا، منيل شيحة')}
+                  {tx(lang, 'Venue — Taracina, Manial Shiha', 'القاعة — تاراسينا، منيل شيحة')}
                 </p>
               </div>
               <iframe
@@ -145,7 +145,7 @@ export function Details() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title={tx(lang, 'Taracina venue — Manial Shiha', 'تاراتشينا — منيل شيحة')}
+                title={tx(lang, 'Taracina venue — Manial Shiha', 'تاراسينا — منيل شيحة')}
               />
             </div>
 

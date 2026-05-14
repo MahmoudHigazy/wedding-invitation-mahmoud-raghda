@@ -35,8 +35,8 @@ export function Countdown({ lang }: { lang: Lang }) {
 
   return (
     <div className="h-a5">
-      <p className="text-[0.68rem] tracking-[4px] uppercase text-gold/70 mb-6 font-heading">
-        {tx(lang, 'Counting down to our day', 'العد التنازلي ليومنا المميّز')}
+      <p className="text-[0.72rem] tracking-[4px] uppercase text-walnut mb-6 font-heading">
+        {tx(lang, 'Counting down to our day', 'العد التنازلي ليومنا الكبير')}
       </p>
       <div className="flex gap-8 justify-center flex-wrap">
         {units.map(u => (
@@ -47,7 +47,7 @@ export function Countdown({ lang }: { lang: Lang }) {
             >
               {pad(u.v)}
             </span>
-            <span className="block text-[0.65rem] tracking-[3px] uppercase text-gold/70 mt-2 font-heading">
+            <span className="block text-[0.68rem] tracking-[3px] uppercase text-walnut mt-2 font-heading">
               {tx(lang, u.en, u.ar)}
             </span>
           </div>
