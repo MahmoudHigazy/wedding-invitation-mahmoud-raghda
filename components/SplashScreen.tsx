@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useLang } from '@/lib/lang'
+import { Particles } from './Particles'
 
 export function SplashScreen() {
   const { setLang } = useLang()
@@ -13,6 +14,8 @@ export function SplashScreen() {
   }
 
   return (
+    <>
+    <Particles />
     <div
       className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-parchment px-8"
       style={{
@@ -93,5 +96,6 @@ export function SplashScreen() {
         June 26 · 2026
       </p>
     </div>
+    </>
   )
 }
