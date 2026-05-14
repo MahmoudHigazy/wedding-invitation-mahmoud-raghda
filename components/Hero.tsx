@@ -78,21 +78,21 @@ export function Hero() {
           <div className="relative flex items-center justify-center gap-4">
             <div className="hidden sm:block h-px w-14 bg-gradient-to-r from-transparent to-gold/40" />
 
-            <div className="flex items-end gap-3 select-none">
+            <div className="flex items-center gap-4 select-none">
               <span
                 className="font-heading font-light gold-shimmer leading-none"
                 style={{ fontSize: 'clamp(3.8rem, 10vw, 7.5rem)', fontStyle: 'italic' }}
               >
                 26
               </span>
-              <span className="text-gold/40 mb-2 text-2xl font-light">·</span>
+              <span className="text-gold/40 text-3xl font-light leading-none">·</span>
               <span
-                className="font-heading font-light text-walnut-muted leading-none"
-                style={{ fontSize: 'clamp(2rem, 5.5vw, 4rem)', fontStyle: 'italic' }}
+                className="font-heading font-light gold-shimmer leading-none"
+                style={{ fontSize: 'clamp(3.8rem, 10vw, 7.5rem)', fontStyle: 'italic' }}
               >
                 6
               </span>
-              <span className="text-gold/40 mb-2 text-2xl font-light">·</span>
+              <span className="text-gold/40 text-3xl font-light leading-none">·</span>
               <span
                 className="font-heading font-light gold-shimmer leading-none"
                 style={{ fontSize: 'clamp(3.8rem, 10vw, 7.5rem)', fontStyle: 'italic' }}
