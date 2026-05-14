@@ -86,7 +86,7 @@ export function RsvpSection() {
             {lang === 'en' ? (
               <>Please confirm your attendance by <strong className="text-walnut">June 15th, 2026</strong>.</>
             ) : (
-              <>اتأكدوا من حضوركم قبل <strong className="text-walnut">١٥ يونيو ٢٠٢٦</strong>.</>
+              <>أكدولنا حضوركم قبل <strong className="text-walnut">١٥ يونيو ٢٠٢٦</strong>.</>
             )}
           </p>
         </Reveal>
