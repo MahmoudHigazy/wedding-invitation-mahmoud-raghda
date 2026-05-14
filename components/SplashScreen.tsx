@@ -71,12 +71,12 @@ export function SplashScreen() {
           onClick={() => choose('ar')}
           className="
             border border-gold/30 bg-white/50 text-walnut
-            font-heading tracking-widest text-base
+            font-heading text-base
             px-10 py-4 transition-all duration-300
             hover:border-gold/70 hover:bg-white hover:-translate-y-0.5
             hover:shadow-[0_8px_24px_rgba(184,146,44,0.15)]
           "
-          style={{ fontFamily: 'var(--font-amiri), serif' }}
+          style={{ fontFamily: 'var(--font-amiri), serif', letterSpacing: 0 }}
         >
           العربية
         </button>
