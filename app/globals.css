@@ -88,6 +88,10 @@
   font-feature-settings: "kern" 1, "liga" 1;
   -webkit-font-smoothing: antialiased;
 }
+/* Letter-spacing breaks Arabic character joining — reset globally in RTL */
+[dir="rtl"] * {
+  letter-spacing: 0 !important;
+}
 [dir="rtl"] h1,
 [dir="rtl"] h2,
 [dir="rtl"] h3 {
