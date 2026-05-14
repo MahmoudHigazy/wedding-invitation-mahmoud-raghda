@@ -46,7 +46,7 @@ export function Footer() {
       </div>
 
       <p className="text-[0.68rem] tracking-[4px] uppercase text-walnut-muted font-heading">
-        {tx(lang, 'June 26 · 2026 · Taracina, Manial Shiha, Giza', '٢٦ يونيو · ٢٠٢٦ · تاراسينا، منيل شيحة، الجيزة')}
+        {tx(lang, 'June 26 · 2026 · Taracina, Manial Shiha, Giza', '٢٦ يونيو · ٢٠٢٦ · تراسينا، منيل شيحة، الجيزة')}
       </p>
     </footer>
   )

@@ -17,7 +17,7 @@ const CARDS = [
     title:  ['Venue',                   'مكان الفرح'],
     body:   [
       'Taracina Wedding on the Nile\nManial Shiha, Giza\nA semi-island on the banks of the Nile',
-      'تاراسينا — حفلات على النيل\nمنيل شيحة، الجيزة\nجزيرة صغيرة على ضفاف نهر النيل',
+      'تراسينا — حفلات على النيل\nمنيل شيحة، الجيزة\nجزيرة صغيرة على ضفاف نهر النيل',
     ],
   },
   {
@@ -135,7 +135,7 @@ export function Details() {
               <div className="px-5 py-3 bg-parchment/80 flex items-center gap-3">
                 <span className="text-gold/70 text-xs font-heading tracking-widest">◈</span>
                 <p className="font-heading text-walnut text-[0.78rem] tracking-[2px] uppercase">
-                  {tx(lang, 'Venue — Taracina, Manial Shiha', 'القاعة — تاراسينا، منيل شيحة')}
+                  {tx(lang, 'Venue — Taracina, Manial Shiha', 'القاعة — تراسينا، منيل شيحة')}
                 </p>
               </div>
               <iframe
@@ -145,7 +145,7 @@ export function Details() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title={tx(lang, 'Taracina venue — Manial Shiha', 'تاراسينا — منيل شيحة')}
+                title={tx(lang, 'Taracina venue — Manial Shiha', 'تراسينا — منيل شيحة')}
               />
             </div>
 
