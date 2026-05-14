@@ -89,6 +89,42 @@ export function Details() {
           ))}
         </div>
 
+        {/* Add to Calendar */}
+        <Reveal className="mt-10 text-center">
+          <p className="text-[0.68rem] tracking-[5px] uppercase text-gold/70 mb-5 font-heading">
+            {tx(lang, 'Save the Date', 'أضف إلى تقويمك')}
+          </p>
+          <div className="flex flex-wrap justify-center gap-3">
+            {/* Google Calendar */}
+            <a
+              href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mahmoud+%26+Raghda+%E2%80%94+Wedding&dates=20260626T180000/20260627T000000&ctz=Africa%2FCairo&details=Wedding+ceremony+at+6%3A00+PM+followed+by+reception.+Venue%3A+Taracina+Wedding+on+the+Nile%2C+Manial+Shiha%2C+Giza&location=Taracina+Wedding+on+the+Nile%2C+Manial+Shiha%2C+Giza"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border border-gold/30 bg-white/50 text-walnut px-6 py-3 font-heading text-[0.78rem] tracking-[2px] uppercase transition-all duration-300 hover:border-gold/60 hover:bg-white hover:-translate-y-0.5"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <rect x="3" y="4" width="18" height="17" rx="2" stroke="#B8922C" strokeWidth="1.5"/>
+                <path d="M3 9h18" stroke="#B8922C" strokeWidth="1.5"/>
+                <path d="M8 2v4M16 2v4" stroke="#B8922C" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+              {tx(lang, 'Google Calendar', 'جوجل كالندر')}
+            </a>
+
+            {/* Apple / Outlook — ICS download */}
+            <a
+              href="/api/calendar"
+              download="mahmoud-raghda-wedding.ics"
+              className="inline-flex items-center gap-2 border border-gold/30 bg-white/50 text-walnut px-6 py-3 font-heading text-[0.78rem] tracking-[2px] uppercase transition-all duration-300 hover:border-gold/60 hover:bg-white hover:-translate-y-0.5"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" stroke="#B8922C" strokeWidth="1.5"/>
+                <path d="M12 8v4l3 3" stroke="#B8922C" strokeWidth="1.5" strokeLinecap="round"/>
+              </svg>
+              {tx(lang, 'Apple / Outlook', 'آبل / أوتلوك')}
+            </a>
+          </div>
+        </Reveal>
+
         {/* Maps — venue + boat pickup */}
         <Reveal className="mt-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
