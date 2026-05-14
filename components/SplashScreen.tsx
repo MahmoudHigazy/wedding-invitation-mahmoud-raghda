@@ -78,7 +78,8 @@ export function SplashScreen() {
         <div className="h-px w-24 bg-gradient-to-r from-transparent via-gold/40 to-transparent mb-10" />
 
         <p className="text-[0.68rem] tracking-[4px] uppercase text-walnut-muted font-heading mb-8">
-          Choose your language &nbsp;·&nbsp; اختر لغتك
+          Choose your language &nbsp;·&nbsp;
+          <span style={{ fontFamily: 'var(--font-amiri), serif', letterSpacing: 0 }}> اختر لغتك</span>
         </p>
 
         <div className="flex gap-4">
