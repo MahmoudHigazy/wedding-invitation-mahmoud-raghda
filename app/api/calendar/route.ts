@@ -12,6 +12,11 @@ export async function GET() {
     'DESCRIPTION:Wedding ceremony at 6:00 PM followed by reception.\\nVenue: Taracina Wedding on the Nile\\, Manial Shiha\\, Giza',
     'LOCATION:Taracina Wedding on the Nile\\, Manial Shiha\\, Giza',
     'STATUS:CONFIRMED',
+    'BEGIN:VALARM',
+    'TRIGGER:-P1D',
+    'ACTION:DISPLAY',
+    'DESCRIPTION:Reminder: Mahmoud & Raghda\'s Wedding is tomorrow!',
+    'END:VALARM',
     'END:VEVENT',
     'END:VCALENDAR',
   ].join('\r\n')
