@@ -15,8 +15,8 @@ function mkParticle(W: number, H: number): Particle {
     y:    Math.random() * H,
     vx:   (Math.random() - 0.5) * 0.25,
     vy:   Math.random() * 0.25 + 0.08,
-    sz:   Math.random() * 1.8 + 0.5,
-    op:   Math.random() * 0.22 + 0.04,
+    sz:   Math.random() * 2.5 + 1.0,
+    op:   Math.random() * 0.35 + 0.12,
     rot:  Math.random() * Math.PI * 2,
     drot: (Math.random() - 0.5) * 0.012,
     r:    gold ? 184 : 139,
@@ -75,7 +75,7 @@ export function Particles() {
         p.y   += p.vy
         p.rot += p.drot
         p.op  += Math.sin(ts * 0.0007 + p.ph) * 0.0015
-        p.op   = Math.max(0.02, Math.min(0.28, p.op))
+        p.op   = Math.max(0.08, Math.min(0.5, p.op))
 
         if (p.y > H + 20) { p.y = -20; p.x = Math.random() * W }
         if (p.x < -20)     p.x = W + 20
