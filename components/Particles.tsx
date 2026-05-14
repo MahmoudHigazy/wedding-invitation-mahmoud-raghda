@@ -96,7 +96,7 @@ export function Particles() {
   return (
     <canvas
       ref={ref}
-      className="fixed inset-0 pointer-events-none z-10"
+      className="fixed inset-0 pointer-events-none z-30"
       aria-hidden
     />
   )
