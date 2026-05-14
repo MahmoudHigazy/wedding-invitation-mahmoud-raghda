@@ -8,13 +8,13 @@ type P = {
 }
 
 function mkParticles(): P[] {
-  return Array.from({ length: 20 }, (_, i) => ({
+  return Array.from({ length: 8 }, (_, i) => ({
     id:    i,
     x:     Math.random() * 100,
-    size:  Math.random() * 10 + 6,
-    op:    Math.random() * 0.22 + 0.08,
-    dur:   Math.random() * 14 + 10,
-    delay: -(Math.random() * 20),
+    size:  Math.random() * 7 + 5,
+    op:    Math.random() * 0.12 + 0.06,
+    dur:   Math.random() * 18 + 14,
+    delay: -(Math.random() * 25),
     star:  Math.random() > 0.45,
     gold:  Math.random() > 0.4,
   }))
