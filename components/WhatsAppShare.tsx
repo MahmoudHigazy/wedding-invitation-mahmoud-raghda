@@ -7,7 +7,7 @@ export function WhatsAppShare() {
 
   const message = lang === 'en'
     ? `You're invited to Mahmoud & Raghda's wedding — June 26, 2026 🤍\nhttps://wedding-mahmoud-raghda.vercel.app`
-    : `محمود ورغدة بيعزموك على فرحهم — ٢٦ يونيو ٢٠٢٦ 🤍\nhttps://wedding-mahmoud-raghda.vercel.app`
+    : `https://wedding-mahmoud-raghda.vercel.app\nمحمود ورغدة بيعزموك على فرحهم — ٢٦ يونيو ٢٠٢٦ 🤍`
 
   const url = `https://wa.me/?text=${encodeURIComponent(message)}`
 

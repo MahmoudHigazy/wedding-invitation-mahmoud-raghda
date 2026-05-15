@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     title:       'Mahmoud & Raghda — Wedding Invitation',
     description: 'Join us as we begin forever — June 26, 2026',
     type:        'website',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630, alt: 'Mahmoud & Raghda — Wedding Invitation' }],
   },
 }
 
