@@ -19,12 +19,14 @@ export function LangProvider({ children }: { children: ReactNode }) {
   const [ready, setReady]     = useState(false)
 
   useEffect(() => {
+    const param = new URLSearchParams(window.location.search).get('lang') as Lang | null
     const saved = localStorage.getItem('lang') as Lang | null
-    if (saved === 'en' || saved === 'ar') {
-      setLangState(saved)
+    const lang  = (param === 'en' || param === 'ar') ? param : saved
+    if (lang) {
+      setLangState(lang)
+      localStorage.setItem('lang', lang)
       setReady(true)
     }
-    // if nothing saved, ready stays false → splash shows
   }, [])
 
   useEffect(() => {

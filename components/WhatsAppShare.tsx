@@ -5,9 +5,10 @@ import { useLang } from '@/lib/lang'
 export function WhatsAppShare() {
   const { lang } = useLang()
 
+  const base    = 'https://wedding-mahmoud-raghda.vercel.app'
   const message = lang === 'en'
-    ? `You're invited to Mahmoud & Raghda's wedding — June 26, 2026 🤍\nhttps://wedding-mahmoud-raghda.vercel.app`
-    : `https://wedding-mahmoud-raghda.vercel.app\nمحمود ورغدة بيعزموك على فرحهم — ٢٦ يونيو ٢٠٢٦ 🤍`
+    ? `You're invited to Mahmoud & Raghda's wedding — June 26, 2026 🤍\n${base}?lang=en`
+    : `${base}?lang=ar\nمحمود ورغدة بيعزموك على فرحهم — ٢٦ يونيو ٢٠٢٦ 🤍`
 
   const url = `https://wa.me/?text=${encodeURIComponent(message)}`
 
