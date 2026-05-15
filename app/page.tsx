@@ -1,34 +1,23 @@
-'use client'
+import type { Metadata } from 'next'
+import { HomeClient } from '@/components/HomeClient'
 
-import { useLang }      from '@/lib/lang'
-import { SplashScreen }  from '@/components/SplashScreen'
-import { LangToggle }    from '@/components/LangToggle'
-import { Particles }     from '@/components/Particles'
-import { Hero }          from '@/components/Hero'
-import { Divider }       from '@/components/Divider'
-import { Details }       from '@/components/Details'
-import { RsvpSection }   from '@/components/RsvpSection'
-import { Footer }        from '@/components/Footer'
-import { WhatsAppShare } from '@/components/WhatsAppShare'
+interface Props {
+  searchParams: { lang?: string }
+}
+
+export function generateMetadata({ searchParams }: Props): Metadata {
+  const lang = searchParams.lang === 'ar' ? 'ar' : 'en'
+  return {
+    openGraph: {
+      title:       'Mahmoud & Raghda — Wedding Invitation',
+      description: lang === 'ar'
+        ? 'محمود ورغدة بيعزموكم على فرحهم — ٢٦ يونيو ٢٠٢٦'
+        : 'Join us as we begin forever — June 26, 2026',
+      images: [{ url: `/api/og?lang=${lang}`, width: 1200, height: 630 }],
+    },
+  }
+}
 
 export default function Home() {
-  const { ready } = useLang()
-
-  if (!ready) return <SplashScreen />
-
-  return (
-    <>
-      <Particles />
-      <LangToggle />
-      <main>
-        <Hero />
-        <Divider />
-        <Details />
-        <Divider />
-        <RsvpSection />
-      </main>
-      <Footer />
-      <WhatsAppShare />
-    </>
-  )
+  return <HomeClient />
 }
