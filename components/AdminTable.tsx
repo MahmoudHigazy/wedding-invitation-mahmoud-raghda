@@ -91,7 +91,7 @@ export function AdminTable({ adminKey }: { adminKey: string }) {
             <table className="w-full border-collapse font-body text-sm">
               <thead>
                 <tr>
-                  {['#', 'Name', 'Attendance', 'Party Size', 'Submitted'].map(h => (
+                  {['#', 'Name', 'Side', 'Attendance', 'Party Size', 'Submitted'].map(h => (
                     <th key={h} className="bg-parchment-mid text-walnut text-left px-5 py-4 text-[0.7rem] tracking-widest uppercase border-b border-gold/20">
                       {h}
                     </th>
@@ -103,6 +103,15 @@ export function AdminTable({ adminKey }: { adminKey: string }) {
                   <tr key={r.id} className="border-b border-gold/10 hover:bg-parchment-mid/50 transition-colors">
                     <td className="px-5 py-4 text-walnut-muted">{i + 1}</td>
                     <td className="px-5 py-4 font-semibold">{r.name}</td>
+                    <td className="px-5 py-4">
+                      <span className={`inline-block px-3 py-1 text-[0.7rem] tracking-wide border ${
+                        r.side === 'bride'
+                          ? 'bg-rose/10 border-rose/30 text-rose'
+                          : 'bg-gold/10 border-gold/30 text-walnut'
+                      }`}>
+                        {r.side === 'bride' ? 'Bride' : 'Groom'}
+                      </span>
+                    </td>
                     <td className="px-5 py-4">
                       <span className={`inline-block px-3 py-1 text-[0.7rem] tracking-wide border ${
                         r.attendance === 'solo'

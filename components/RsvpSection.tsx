@@ -4,17 +4,19 @@ import { useState } from 'react'
 import { useLang, tx } from '@/lib/lang'
 import { Reveal } from './Reveal'
 
-type Att = 'solo' | 'family'
+type Att  = 'solo' | 'family'
+type Side = 'bride' | 'groom'
 
 interface FormState {
   name:      string
+  side:      Side | ''
   att:       Att | ''
   partySize: string
 }
 
 export function RsvpSection() {
   const { lang } = useLang()
-  const [form,    setForm]    = useState<FormState>({ name: '', att: '', partySize: '' })
+  const [form,    setForm]    = useState<FormState>({ name: '', side: '', att: '', partySize: '' })
   const [done,    setDone]    = useState(false)
   const [loading, setLoading] = useState(false)
   const [error,   setError]   = useState('')
@@ -24,6 +26,7 @@ export function RsvpSection() {
     setError('')
 
     if (!form.name.trim()) { setError(tx(lang, 'Please enter your name.', 'اكتب اسمك الأول.')); return }
+    if (!form.side)        { setError(tx(lang, 'Please choose bride or groom side.', 'اختار جهة العروسة أو العريس.')); return }
     if (!form.att)          { setError(tx(lang, 'Please choose attendance type.', 'اختار نوع الحضور.')); return }
     if (form.att === 'family' && (!form.partySize || Number(form.partySize) < 2)) {
       setError(tx(lang, 'Please enter family size (min 2).', 'اكتب عدد الأفراد (٢ على الأقل).')); return
@@ -36,6 +39,7 @@ export function RsvpSection() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name:       form.name.trim(),
+          side:       form.side,
           attendance: form.att,
           partySize:  form.att === 'family' ? Number(form.partySize) : 1,
         }),
@@ -124,6 +128,25 @@ export function RsvpSection() {
                   placeholder={tx(lang, 'Enter your name…', 'اكتب اسمك…')}
                   className={inputCls}
                 />
+              </div>
+
+              {/* Side */}
+              <div>
+                <label className="block text-[0.68rem] tracking-[4px] uppercase text-walnut mb-2 font-heading">
+                  {tx(lang, "You're joining from", 'أنت من جهة')}
+                </label>
+                <div className="flex gap-3">
+                  <button type="button" className={attBtnCls(form.side === 'bride')}
+                    onClick={() => setForm(f => ({ ...f, side: 'bride' }))}>
+                    <span className="block font-semibold">{tx(lang, "Bride's Side", 'جهة العروسة')}</span>
+                    <span className="block text-xs opacity-60 mt-0.5">{tx(lang, 'Raghda', 'رغدة')}</span>
+                  </button>
+                  <button type="button" className={attBtnCls(form.side === 'groom')}
+                    onClick={() => setForm(f => ({ ...f, side: 'groom' }))}>
+                    <span className="block font-semibold">{tx(lang, "Groom's Side", 'جهة العريس')}</span>
+                    <span className="block text-xs opacity-60 mt-0.5">{tx(lang, 'Mahmoud', 'محمود')}</span>
+                  </button>
+                </div>
               </div>
 
               {/* Attendance */}

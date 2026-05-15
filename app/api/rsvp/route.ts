@@ -17,10 +17,13 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const body = await req.json() as Record<string, unknown>
-    const { name, attendance, partySize } = body
+    const { name, side, attendance, partySize } = body
 
     if (typeof name !== 'string' || !name.trim()) {
       return NextResponse.json({ error: 'Name is required' }, { status: 400 })
+    }
+    if (side !== 'bride' && side !== 'groom') {
+      return NextResponse.json({ error: 'Invalid side' }, { status: 400 })
     }
     if (attendance !== 'solo' && attendance !== 'family') {
       return NextResponse.json({ error: 'Invalid attendance type' }, { status: 400 })
@@ -29,6 +32,7 @@ export async function POST(req: Request) {
     const entry: RsvpEntry = {
       id:         Date.now(),
       name:       name.trim().slice(0, 120),
+      side,
       attendance,
       partySize:  attendance === 'family'
                     ? Math.min(Math.max(Number(partySize) || 2, 2), 50)

@@ -3,13 +3,15 @@ import { kv } from '@vercel/kv'
 export interface RsvpEntry {
   id:         number
   name:       string
+  side:       'bride' | 'groom'
   attendance: 'solo' | 'family'
   partySize:  number
   at:         string
 }
 
 export async function readRsvps(): Promise<RsvpEntry[]> {
-  return (await kv.get<RsvpEntry[]>('rsvps')) ?? []
+  const entries = (await kv.get<RsvpEntry[]>('rsvps')) ?? []
+  return entries.map(e => ({ side: 'groom', ...e }))
 }
 
 export async function appendRsvp(entry: RsvpEntry): Promise<void> {
