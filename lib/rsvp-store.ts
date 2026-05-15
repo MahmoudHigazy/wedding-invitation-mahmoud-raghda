@@ -11,7 +11,7 @@ export interface RsvpEntry {
 
 export async function readRsvps(): Promise<RsvpEntry[]> {
   const entries = (await kv.get<RsvpEntry[]>('rsvps')) ?? []
-  return entries.map(e => ({ side: 'groom', ...e }))
+  return entries.map(e => ({ ...e, side: e.side ?? 'groom' }))
 }
 
 export async function appendRsvp(entry: RsvpEntry): Promise<void> {
