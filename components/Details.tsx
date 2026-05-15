@@ -20,15 +20,7 @@ const CARDS = [
       'تراسينا — حفلات على النيل\nمنيل شيحة، الجيزة\nجزيرة صغيرة على ضفاف نهر النيل',
     ],
   },
-  {
-    icon: '◈',
-    title:  ['The Evening',             'أجواء الليلة'],
-    body:   [
-      'An open-air ceremony beneath the stars, surrounded by Nile views, swaying palms, and warm candlelight.',
-      'حفل في الهوا الطلق تحت النجوم، مع منظر النيل ونخيل الجيزة وضوء الشموع.',
-    ],
-  },
-  {
+{
     icon: '◈',
     title:  ['Getting There',           'إزاي توصل'],
     body:   [
