@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useLang, tx } from '@/lib/lang'
 import { Reveal } from './Reveal'
+import { Confetti } from './Confetti'
 
 type Att  = 'solo' | 'family'
 type Side = 'bride' | 'groom'
@@ -97,6 +98,8 @@ export function RsvpSection() {
 
         <Reveal className="mt-10">
           {done ? (
+            <>
+            <Confetti />
             <div className="border border-gold/30 p-12 text-center bg-white/40">
               <div className="rule-gold mb-8" />
               <span className="text-gold text-3xl block mb-5 font-heading">✦</span>
@@ -114,6 +117,7 @@ export function RsvpSection() {
                 )}
               </p>
             </div>
+            </>
           ) : (
             <form onSubmit={submit} noValidate className="space-y-7">
               {/* Name */}
