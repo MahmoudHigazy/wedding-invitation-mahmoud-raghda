@@ -127,6 +127,23 @@ export function Hero() {
 
         {/* ── Countdown ── */}
         <Countdown lang={lang} />
+
+        {/* ── RSVP CTA ── */}
+        <div className="h-a6 mt-10">
+          <a
+            href="#rsvp"
+            className="
+              inline-block border border-gold/40 bg-white/50 text-walnut
+              font-heading text-[0.78rem] tracking-widest uppercase
+              px-10 py-4 transition-all duration-300
+              hover:border-gold/70 hover:bg-white hover:-translate-y-0.5
+              hover:shadow-[0_8px_24px_rgba(184,146,44,0.18)]
+            "
+            style={{ fontStyle: lang === 'en' ? 'italic' : 'normal' }}
+          >
+            {tx(lang, 'Confirm Attendance ✦', 'أكد حضورك ✦')}
+          </a>
+        </div>
       </div>
 
       {/* ── Scroll arrow ── */}
