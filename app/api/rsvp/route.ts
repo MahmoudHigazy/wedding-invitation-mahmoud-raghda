@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import { appendRsvp, readRsvps, clearRsvps } from '@/lib/rsvp-store'
 import type { RsvpEntry } from '@/lib/rsvp-store'
 
+export const dynamic = 'force-dynamic'
+
 const ADMIN_KEY = process.env.ADMIN_KEY ?? 'secret'
 
 export async function GET(req: Request) {

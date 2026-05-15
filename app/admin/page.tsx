@@ -2,6 +2,8 @@ import { readRsvps } from '@/lib/rsvp-store'
 import { AdminTable } from '@/components/AdminTable'
 import { redirect }   from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
+
 interface Props {
   searchParams: { key?: string }
 }
