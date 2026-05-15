@@ -40,6 +40,7 @@ export function AdminTable({ adminKey }: { adminKey: string }) {
 
   useEffect(() => { fetchRsvps() }, [fetchRsvps])
 
+  const TARGET = 200
   const stats: Stats = {
     responses: rsvps.length,
     total:     rsvps.reduce((s, r) => s + r.partySize, 0),
@@ -72,10 +73,11 @@ export function AdminTable({ adminKey }: { adminKey: string }) {
         </div>
 
         <div className="flex gap-4 justify-center flex-wrap mb-10">
-          <StatCard value={stats.responses} label="Total RSVPs"   />
-          <StatCard value={stats.total}     label="Total Guests"  />
-          <StatCard value={stats.solos}     label="Individual"    />
-          <StatCard value={stats.families}  label="Family Groups" />
+          <StatCard value={stats.responses}          label="Total RSVPs"   />
+          <StatCard value={stats.total}              label="Total Guests"  />
+          <StatCard value={stats.solos}              label="Individual"    />
+          <StatCard value={stats.families}           label="Family Groups" />
+          <StatCard value={TARGET - stats.total}     label="Remaining / 200" />
         </div>
 
         {loading ? (
