@@ -76,5 +76,6 @@ export async function GET(req: NextRequest) {
     })
   }
 
-  return new ImageResponse(buildImage(isAr), { width: 1200, height: 630 })
+  // Fall back to English image — Arabic text can't render without the font
+  return new ImageResponse(buildImage(false), { width: 1200, height: 630 })
 }
