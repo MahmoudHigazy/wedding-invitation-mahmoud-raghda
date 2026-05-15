@@ -9,7 +9,7 @@ export async function GET() {
     'DTSTART;TZID=Africa/Cairo:20260626T190000',
     'DTEND;TZID=Africa/Cairo:20260627T000000',
     'SUMMARY:Mahmoud & Raghda — Wedding',
-    'DESCRIPTION:Celebration at 7:00 PM.\\nVenue: Taracina Wedding on the Nile\\, Manial Shiha\\, Giza',
+    'DESCRIPTION:Wedding at 7:00 PM.\\nVenue: Taracina Wedding on the Nile\\, Manial Shiha\\, Giza',
     'LOCATION:Taracina Wedding on the Nile\\, Manial Shiha\\, Giza',
     'STATUS:CONFIRMED',
     'BEGIN:VALARM',

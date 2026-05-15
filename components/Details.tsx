@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useLang, tx } from '@/lib/lang'
 import { Reveal } from './Reveal'
 
-const GOOGLE_CAL = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mahmoud+%26+Raghda+%E2%80%94+Wedding&dates=20260626T190000/20260627T000000&ctz=Africa%2FCairo&details=Celebration+at+7%3A00+PM.+Venue%3A+Taracina+Wedding+on+the+Nile%2C+Manial+Shiha%2C+Giza&location=Taracina+Wedding+on+the+Nile%2C+Manial+Shiha%2C+Giza'
+const GOOGLE_CAL = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mahmoud+%26+Raghda+%E2%80%94+Wedding&dates=20260626T190000/20260627T000000&ctz=Africa%2FCairo&details=Wedding+at+7%3A00+PM.+Venue%3A+Taracina+Wedding+on+the+Nile%2C+Manial+Shiha%2C+Giza&location=Taracina+Wedding+on+the+Nile%2C+Manial+Shiha%2C+Giza'
 
 function CalendarButton({ lang }: { lang: 'en' | 'ar' }) {
   const [isApple, setIsApple] = useState(false)
@@ -44,8 +44,8 @@ const CARDS = [
     icon:  '◈',
     title: ['Date & Time',   'التاريخ والوقت'],
     body:  [
-      'Friday, June 26th, 2026\nCelebration: 7:00 PM',
-      'الجمعة، ٢٦ يونيو ٢٠٢٦\nالاحتفال: الساعة ٧:٠٠ بالليل',
+      'Friday, June 26th, 2026\nWedding: 7:00 PM',
+      'الجمعة، ٢٦ يونيو ٢٠٢٦\nحفل الزفاف: الساعة ٧:٠٠ بالليل',
     ],
     calendar: true,
   },
