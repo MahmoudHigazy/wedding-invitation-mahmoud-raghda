@@ -37,6 +37,8 @@ export function AdminTable({ adminKey }: { adminKey: string }) {
   const [flash,    setFlash]   = useState('')
   const [editId,   setEditId]  = useState<number | null>(null)
   const [draft,    setDraft]   = useState<EditDraft | null>(null)
+  const [showAdd,  setShowAdd] = useState(false)
+  const [newEntry, setNewEntry] = useState<EditDraft>({ name: '', side: 'groom', attendance: 'solo', partySize: 1 })
 
   const fetchRsvps = useCallback(async () => {
     setLoading(true)
@@ -105,6 +107,26 @@ export function AdminTable({ adminKey }: { adminKey: string }) {
     }
   }
 
+  async function handleAdd() {
+    if (!newEntry.name.trim()) { setFlash('Name is required.'); return }
+    setBusy(true)
+    try {
+      await fetch('/api/rsvp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newEntry),
+      })
+      setFlash(`Added "${newEntry.name}".`)
+      setNewEntry({ name: '', side: 'groom', attendance: 'solo', partySize: 1 })
+      setShowAdd(false)
+      await fetchRsvps()
+    } catch {
+      setFlash('Error — could not add.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
   async function handleClear() {
     if (!confirm('Clear all RSVPs? This cannot be undone.')) return
     setBusy(true)
@@ -137,6 +159,84 @@ export function AdminTable({ adminKey }: { adminKey: string }) {
           <StatCard value={stats.solos}              label="Individual"      />
           <StatCard value={stats.families}           label="Family Groups"   />
           <StatCard value={TARGET - stats.total}     label="Remaining / 200" />
+        </div>
+
+        <div className="mb-8">
+          {showAdd ? (
+            <div className="border border-gold/20 bg-parchment-mid p-6">
+              <h2 className="font-heading font-light text-walnut mb-5 text-lg" style={{ fontStyle: 'italic' }}>Add RSVP</h2>
+              <div className="flex flex-wrap gap-4 items-end">
+                <div className="flex flex-col gap-1">
+                  <label className="text-[0.65rem] tracking-widest uppercase text-walnut-muted">Name</label>
+                  <input
+                    value={newEntry.name}
+                    onChange={e => setNewEntry({ ...newEntry, name: e.target.value })}
+                    placeholder="Guest name"
+                    className="border border-gold/30 bg-parchment px-3 py-2 text-sm w-52 outline-none focus:border-gold"
+                  />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-[0.65rem] tracking-widest uppercase text-walnut-muted">Side</label>
+                  <select
+                    value={newEntry.side}
+                    onChange={e => setNewEntry({ ...newEntry, side: e.target.value as 'bride' | 'groom' })}
+                    className="border border-gold/30 bg-parchment px-3 py-2 text-sm outline-none focus:border-gold"
+                  >
+                    <option value="groom">Groom</option>
+                    <option value="bride">Bride</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <label className="text-[0.65rem] tracking-widest uppercase text-walnut-muted">Attendance</label>
+                  <select
+                    value={newEntry.attendance}
+                    onChange={e => setNewEntry({ ...newEntry, attendance: e.target.value as 'solo' | 'family', partySize: e.target.value === 'solo' ? 1 : 2 })}
+                    className="border border-gold/30 bg-parchment px-3 py-2 text-sm outline-none focus:border-gold"
+                  >
+                    <option value="solo">Individual</option>
+                    <option value="family">Family</option>
+                  </select>
+                </div>
+                {newEntry.attendance === 'family' && (
+                  <div className="flex flex-col gap-1">
+                    <label className="text-[0.65rem] tracking-widest uppercase text-walnut-muted">Party Size</label>
+                    <input
+                      type="number"
+                      min={2}
+                      max={50}
+                      value={newEntry.partySize}
+                      onChange={e => setNewEntry({ ...newEntry, partySize: Number(e.target.value) })}
+                      className="border border-gold/30 bg-parchment px-3 py-2 text-sm w-24 outline-none focus:border-gold"
+                    />
+                  </div>
+                )}
+                <div className="flex gap-2">
+                  <button
+                    onClick={handleAdd}
+                    disabled={busy}
+                    className="border border-gold/40 bg-gold/10 text-walnut px-5 py-2 text-sm tracking-wide transition-all duration-300 hover:bg-gold/20 disabled:opacity-40"
+                  >
+                    {busy ? 'Adding…' : 'Add'}
+                  </button>
+                  <button
+                    onClick={() => { setShowAdd(false); setNewEntry({ name: '', side: 'groom', attendance: 'solo', partySize: 1 }) }}
+                    disabled={busy}
+                    className="border border-gold/20 text-walnut-muted px-5 py-2 text-sm tracking-wide transition-all duration-300 hover:bg-parchment disabled:opacity-40"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <button
+              onClick={() => setShowAdd(true)}
+              disabled={editId !== null}
+              className="border border-gold/40 bg-gold/10 text-walnut px-5 py-2.5 text-sm tracking-wide transition-all duration-300 hover:bg-gold/20 disabled:opacity-40"
+            >
+              + Add RSVP
+            </button>
+          )}
         </div>
 
         {loading ? (
