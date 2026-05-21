@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { appendRsvp, readRsvps, clearRsvps } from '@/lib/rsvp-store'
+import { appendRsvp, readRsvps, clearRsvps, deleteRsvp } from '@/lib/rsvp-store'
 import type { RsvpEntry } from '@/lib/rsvp-store'
 
 export const dynamic = 'force-dynamic'
@@ -52,6 +52,11 @@ export async function DELETE(req: Request) {
   if (searchParams.get('key') !== ADMIN_KEY) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
-  await clearRsvps()
+  const id = searchParams.get('id')
+  if (id) {
+    await deleteRsvp(Number(id))
+  } else {
+    await clearRsvps()
+  }
   return NextResponse.json({ success: true })
 }

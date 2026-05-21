@@ -52,6 +52,20 @@ export function AdminTable({ adminKey }: { adminKey: string }) {
     groomTotal: rsvps.filter(r => r.side === 'groom').reduce((s, r) => s + r.partySize, 0),
   }
 
+  async function handleDelete(id: number, name: string) {
+    if (!confirm(`Delete RSVP for "${name}"?`)) return
+    setBusy(true)
+    try {
+      await fetch(`/api/rsvp?key=${adminKey}&id=${id}`, { method: 'DELETE' })
+      setFlash(`Deleted "${name}".`)
+      await fetchRsvps()
+    } catch {
+      setFlash('Error — could not delete.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
   async function handleClear() {
     if (!confirm('Clear all RSVPs? This cannot be undone.')) return
     setBusy(true)
@@ -97,7 +111,7 @@ export function AdminTable({ adminKey }: { adminKey: string }) {
             <table className="w-full border-collapse font-body text-sm">
               <thead>
                 <tr>
-                  {['#', 'Name', 'Side', 'Attendance', 'Party Size', 'Submitted'].map(h => (
+                  {['#', 'Name', 'Side', 'Attendance', 'Party Size', 'Submitted', ''].map(h => (
                     <th key={h} className="bg-parchment-mid text-walnut text-left px-5 py-4 text-[0.7rem] tracking-widest uppercase border-b border-gold/20">
                       {h}
                     </th>
@@ -129,6 +143,15 @@ export function AdminTable({ adminKey }: { adminKey: string }) {
                     </td>
                     <td className="px-5 py-4">{r.partySize} {r.partySize === 1 ? 'person' : 'people'}</td>
                     <td className="px-5 py-4 text-walnut-muted text-xs">{new Date(r.at).toLocaleString()}</td>
+                    <td className="px-5 py-4">
+                      <button
+                        onClick={() => handleDelete(r.id, r.name)}
+                        disabled={busy}
+                        className="border border-rose/40 bg-rose/10 text-rose px-3 py-1 text-xs tracking-wide transition-all duration-300 hover:bg-rose/20 disabled:opacity-40"
+                      >
+                        Delete
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
