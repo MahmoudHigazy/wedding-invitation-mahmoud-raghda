@@ -20,6 +20,11 @@ export async function appendRsvp(entry: RsvpEntry): Promise<void> {
   await kv.set('rsvps', list)
 }
 
+export async function updateRsvp(id: number, patch: Partial<Omit<RsvpEntry, 'id' | 'at'>>): Promise<void> {
+  const list = await readRsvps()
+  await kv.set('rsvps', list.map(e => e.id === id ? { ...e, ...patch } : e))
+}
+
 export async function deleteRsvp(id: number): Promise<void> {
   const list = await readRsvps()
   await kv.set('rsvps', list.filter(e => e.id !== id))

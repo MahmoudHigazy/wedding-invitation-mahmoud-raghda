@@ -23,11 +23,20 @@ function StatCard({ value, label }: { value: number; label: string }) {
   )
 }
 
+interface EditDraft {
+  name:       string
+  side:       'bride' | 'groom'
+  attendance: 'solo' | 'family'
+  partySize:  number
+}
+
 export function AdminTable({ adminKey }: { adminKey: string }) {
   const [rsvps,    setRsvps]   = useState<RsvpEntry[]>([])
   const [loading,  setLoading] = useState(true)
   const [busy,     setBusy]    = useState(false)
   const [flash,    setFlash]   = useState('')
+  const [editId,   setEditId]  = useState<number | null>(null)
+  const [draft,    setDraft]   = useState<EditDraft | null>(null)
 
   const fetchRsvps = useCallback(async () => {
     setLoading(true)
@@ -50,6 +59,36 @@ export function AdminTable({ adminKey }: { adminKey: string }) {
     families:   rsvps.filter(r => r.attendance === 'family').length,
     brideTotal: rsvps.filter(r => r.side === 'bride').reduce((s, r) => s + r.partySize, 0),
     groomTotal: rsvps.filter(r => r.side === 'groom').reduce((s, r) => s + r.partySize, 0),
+  }
+
+  function startEdit(r: RsvpEntry) {
+    setEditId(r.id)
+    setDraft({ name: r.name, side: r.side, attendance: r.attendance, partySize: r.partySize })
+  }
+
+  function cancelEdit() {
+    setEditId(null)
+    setDraft(null)
+  }
+
+  async function handleSave(id: number) {
+    if (!draft) return
+    setBusy(true)
+    try {
+      await fetch(`/api/rsvp?key=${adminKey}&id=${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(draft),
+      })
+      setFlash('Saved.')
+      setEditId(null)
+      setDraft(null)
+      await fetchRsvps()
+    } catch {
+      setFlash('Error — could not save.')
+    } finally {
+      setBusy(false)
+    }
   }
 
   async function handleDelete(id: number, name: string) {
@@ -119,41 +158,121 @@ export function AdminTable({ adminKey }: { adminKey: string }) {
                 </tr>
               </thead>
               <tbody>
-                {rsvps.map((r, i) => (
-                  <tr key={r.id} className="border-b border-gold/10 hover:bg-parchment-mid/50 transition-colors">
-                    <td className="px-5 py-4 text-walnut-muted">{i + 1}</td>
-                    <td className="px-5 py-4 font-semibold">{r.name}</td>
-                    <td className="px-5 py-4">
-                      <span className={`inline-block px-3 py-1 text-[0.7rem] tracking-wide border ${
-                        r.side === 'bride'
-                          ? 'bg-rose/10 border-rose/30 text-rose'
-                          : 'bg-gold/10 border-gold/30 text-walnut'
-                      }`}>
-                        {r.side === 'bride' ? 'Bride' : 'Groom'}
-                      </span>
-                    </td>
-                    <td className="px-5 py-4">
-                      <span className={`inline-block px-3 py-1 text-[0.7rem] tracking-wide border ${
-                        r.attendance === 'solo'
-                          ? 'bg-rose/10 border-rose/30 text-rose'
-                          : 'bg-gold/10 border-gold/30 text-walnut'
-                      }`}>
-                        {r.attendance === 'solo' ? 'Individual' : 'Family'}
-                      </span>
-                    </td>
-                    <td className="px-5 py-4">{r.partySize} {r.partySize === 1 ? 'person' : 'people'}</td>
-                    <td className="px-5 py-4 text-walnut-muted text-xs">{new Date(r.at).toLocaleString()}</td>
-                    <td className="px-5 py-4">
-                      <button
-                        onClick={() => handleDelete(r.id, r.name)}
-                        disabled={busy}
-                        className="border border-rose/40 bg-rose/10 text-rose px-3 py-1 text-xs tracking-wide transition-all duration-300 hover:bg-rose/20 disabled:opacity-40"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                {rsvps.map((r, i) => {
+                  const isEditing = editId === r.id
+                  return (
+                    <tr key={r.id} className="border-b border-gold/10 hover:bg-parchment-mid/50 transition-colors">
+                      <td className="px-5 py-4 text-walnut-muted">{i + 1}</td>
+
+                      {isEditing && draft ? (
+                        <>
+                          <td className="px-5 py-4">
+                            <input
+                              value={draft.name}
+                              onChange={e => setDraft({ ...draft, name: e.target.value })}
+                              className="border border-gold/30 bg-parchment px-2 py-1 text-sm w-full outline-none focus:border-gold"
+                            />
+                          </td>
+                          <td className="px-5 py-4">
+                            <select
+                              value={draft.side}
+                              onChange={e => setDraft({ ...draft, side: e.target.value as 'bride' | 'groom' })}
+                              className="border border-gold/30 bg-parchment px-2 py-1 text-sm outline-none focus:border-gold"
+                            >
+                              <option value="bride">Bride</option>
+                              <option value="groom">Groom</option>
+                            </select>
+                          </td>
+                          <td className="px-5 py-4">
+                            <select
+                              value={draft.attendance}
+                              onChange={e => setDraft({ ...draft, attendance: e.target.value as 'solo' | 'family', partySize: e.target.value === 'solo' ? 1 : draft.partySize < 2 ? 2 : draft.partySize })}
+                              className="border border-gold/30 bg-parchment px-2 py-1 text-sm outline-none focus:border-gold"
+                            >
+                              <option value="solo">Individual</option>
+                              <option value="family">Family</option>
+                            </select>
+                          </td>
+                          <td className="px-5 py-4">
+                            {draft.attendance === 'family' ? (
+                              <input
+                                type="number"
+                                min={2}
+                                max={50}
+                                value={draft.partySize}
+                                onChange={e => setDraft({ ...draft, partySize: Number(e.target.value) })}
+                                className="border border-gold/30 bg-parchment px-2 py-1 text-sm w-20 outline-none focus:border-gold"
+                              />
+                            ) : (
+                              <span className="text-walnut-muted text-sm">1 person</span>
+                            )}
+                          </td>
+                          <td className="px-5 py-4 text-walnut-muted text-xs">{new Date(r.at).toLocaleString()}</td>
+                          <td className="px-5 py-4">
+                            <div className="flex gap-2">
+                              <button
+                                onClick={() => handleSave(r.id)}
+                                disabled={busy}
+                                className="border border-gold/40 bg-gold/10 text-walnut px-3 py-1 text-xs tracking-wide transition-all duration-300 hover:bg-gold/20 disabled:opacity-40"
+                              >
+                                Save
+                              </button>
+                              <button
+                                onClick={cancelEdit}
+                                disabled={busy}
+                                className="border border-gold/20 text-walnut-muted px-3 py-1 text-xs tracking-wide transition-all duration-300 hover:bg-parchment-mid disabled:opacity-40"
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          </td>
+                        </>
+                      ) : (
+                        <>
+                          <td className="px-5 py-4 font-semibold">{r.name}</td>
+                          <td className="px-5 py-4">
+                            <span className={`inline-block px-3 py-1 text-[0.7rem] tracking-wide border ${
+                              r.side === 'bride'
+                                ? 'bg-rose/10 border-rose/30 text-rose'
+                                : 'bg-gold/10 border-gold/30 text-walnut'
+                            }`}>
+                              {r.side === 'bride' ? 'Bride' : 'Groom'}
+                            </span>
+                          </td>
+                          <td className="px-5 py-4">
+                            <span className={`inline-block px-3 py-1 text-[0.7rem] tracking-wide border ${
+                              r.attendance === 'solo'
+                                ? 'bg-rose/10 border-rose/30 text-rose'
+                                : 'bg-gold/10 border-gold/30 text-walnut'
+                            }`}>
+                              {r.attendance === 'solo' ? 'Individual' : 'Family'}
+                            </span>
+                          </td>
+                          <td className="px-5 py-4">{r.partySize} {r.partySize === 1 ? 'person' : 'people'}</td>
+                          <td className="px-5 py-4 text-walnut-muted text-xs">{new Date(r.at).toLocaleString()}</td>
+                          <td className="px-5 py-4">
+                            <div className="flex gap-2">
+                              <button
+                                onClick={() => startEdit(r)}
+                                disabled={busy || editId !== null}
+                                className="border border-gold/40 bg-gold/10 text-walnut px-3 py-1 text-xs tracking-wide transition-all duration-300 hover:bg-gold/20 disabled:opacity-40"
+                              >
+                                Edit
+                              </button>
+                              <button
+                                onClick={() => handleDelete(r.id, r.name)}
+                                disabled={busy || editId !== null}
+                                className="border border-rose/40 bg-rose/10 text-rose px-3 py-1 text-xs tracking-wide transition-all duration-300 hover:bg-rose/20 disabled:opacity-40"
+                              >
+                                Delete
+                              </button>
+                            </div>
+                          </td>
+                        </>
+                      )}
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
           </div>
