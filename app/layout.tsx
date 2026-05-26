@@ -36,8 +36,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="en"
       dir="ltr"
+      translate="no"
       className={`${cormorant.variable} ${amiri.variable}`}
     >
+      <head>
+        <meta name="google" content="notranslate" />
+      </head>
       <body>
         <LangProvider>{children}</LangProvider>
       </body>
