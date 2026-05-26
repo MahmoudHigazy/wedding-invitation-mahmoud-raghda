@@ -135,14 +135,7 @@ export function Hero() {
         </div>
       </div>
 
-      {/* ── Scroll arrow ── */}
-      <div className="h-a6 absolute bottom-9 left-1/2 -translate-x-1/2">
-        <div
-          aria-hidden
-          className="w-5 h-5 border-e border-b border-gold/50"
-          style={{ transform: 'rotate(45deg)', animation: 'scrollBounce 2s ease-in-out infinite' }}
-        />
-      </div>
+
     </section>
   )
 }

@@ -9,8 +9,6 @@ import { Divider }       from '@/components/Divider'
 import { Details }       from '@/components/Details'
 import { RsvpSection }   from '@/components/RsvpSection'
 import { Footer }        from '@/components/Footer'
-import { WhatsAppShare } from '@/components/WhatsAppShare'
-
 export function HomeClient() {
   const { ready } = useLang()
 
@@ -28,7 +26,6 @@ export function HomeClient() {
         <RsvpSection />
       </main>
       <Footer />
-      <WhatsAppShare />
     </>
   )
 }

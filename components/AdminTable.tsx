@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import type { RsvpEntry } from '@/lib/rsvp-store'
+import { WhatsAppShare } from '@/components/WhatsAppShare'
 
 interface Stats {
   responses:  number
@@ -398,6 +399,7 @@ export function AdminTable({ adminKey }: { adminKey: string }) {
           </div>
         </div>
       </div>
+      <WhatsAppShare />
     </div>
   )
 }
