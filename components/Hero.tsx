@@ -30,7 +30,7 @@ export function Hero() {
 
         {/* ── Pre-title ── */}
         <p className="h-a1 font-heading text-[0.72rem] tracking-[6px] uppercase text-walnut mb-10">
-          {tx(lang, 'Together with their families', 'مع عيلتيهم الكريمة')}
+          {tx(lang, 'Together with their families', 'بفرحة أهلنا وحبايبنا،')}
         </p>
 
         {/* ── Couple names ── */}
@@ -65,10 +65,7 @@ export function Hero() {
             fontStyle: lang === 'en' ? 'italic' : 'normal',
           }}
         >
-          {tx(lang,
-            '"Two souls, one story — beginning forever"',
-            '«روحين، حكاية واحدة — وبداية للأبد»',
-          )}
+          {tx(lang, 'with full hearts, invite you to their wedding.', 'بيعزموكم تشاركوهم يومهم.')}
         </p>
 
         {/* ── Date block ── */}
@@ -103,14 +100,6 @@ export function Hero() {
 
             <div className="hidden sm:block h-px w-14 bg-gradient-to-l from-transparent to-gold/40" />
           </div>
-
-          {/* Palindrome caption */}
-          <p
-            className="font-heading text-walnut tracking-[4px] uppercase"
-            style={{ fontSize: '0.72rem' }}
-          >
-            {tx(lang, 'A date that mirrors itself', 'تاريخ بيعكس نفسه')}
-          </p>
 
           {/* Full written date */}
           <div className="border border-gold/30 px-10 py-4 relative bg-white/30">

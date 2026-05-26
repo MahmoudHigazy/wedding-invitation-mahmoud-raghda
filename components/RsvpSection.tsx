@@ -74,7 +74,7 @@ export function RsvpSection() {
       <div className="max-w-xl mx-auto">
         <Reveal className="text-center">
           <p className="block text-[0.68rem] tracking-[6px] uppercase text-walnut mb-5 font-heading">
-            {tx(lang, 'Will You Join Us?', 'هتيجوا معانا؟')}
+            {tx(lang, `We’d love to see you there`, 'تعالوا احتفلوا معانا')}
           </p>
           <h2
             className="font-heading font-light text-walnut mb-4"
