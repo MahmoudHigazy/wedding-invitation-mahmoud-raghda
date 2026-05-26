@@ -123,7 +123,7 @@ export function RsvpSection() {
               {/* Name */}
               <div>
                 <label className="block text-[0.68rem] tracking-[4px] uppercase text-walnut mb-2 font-heading">
-                  {tx(lang, 'Your Full Name', 'اسمك الكامل')}
+                  {tx(lang, 'Your Name', 'اسمك')}
                 </label>
                 <input
                   type="text"
