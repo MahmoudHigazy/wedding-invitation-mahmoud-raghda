@@ -63,7 +63,7 @@ export function SplashScreen() {
         </div>
 
         <p className="text-[0.65rem] tracking-[6px] uppercase text-walnut-muted font-heading mb-6">
-          You are cordially invited
+          You are invited
         </p>
         <h1 className="font-heading font-light text-walnut text-center italic mb-2"
           style={{ fontSize: 'clamp(2.8rem, 8vw, 5rem)', lineHeight: 1.1 }}>
