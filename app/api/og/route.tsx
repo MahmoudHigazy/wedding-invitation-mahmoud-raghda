@@ -40,7 +40,7 @@ function buildImage(isAr: boolean) {
       </div>
 
       <div style={{ fontSize: 18, letterSpacing: isAr ? 0 : 6, color: '#7A6248', marginBottom: 24 }}>
-        {isAr ? 'أنتم مدعوون بكل محبة' : 'YOU ARE CORDIALLY INVITED'}
+        {isAr ? 'أنتم مدعوون' : 'YOU ARE INVITED'}
       </div>
 
       <div style={{ fontSize: isAr ? 80 : 88, color: '#1C140A', fontWeight: 300, lineHeight: 1.2 }}>

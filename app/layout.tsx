@@ -22,10 +22,10 @@ const amiri = Amiri({
 export const metadata: Metadata = {
   metadataBase: new URL('https://wedding-mahmoud-raghda.vercel.app'),
   title:       'Mahmoud & Raghda — Wedding Invitation',
-  description: 'You are cordially invited to celebrate the wedding of Mahmoud and Raghda — June 26, 2026',
+  description: 'You are invited to celebrate the wedding of Mahmoud and Raghda — June 26, 2026',
   openGraph: {
     title:       'Mahmoud & Raghda — Wedding Invitation',
-    description: 'Join us as we begin forever — June 26, 2026',
+    description: 'Mahmoud & Raghda — June 26, 2026 · Taracina, Giza',
     type:        'website',
     images: [{ url: '/api/og?lang=en', width: 1200, height: 630, alt: 'Mahmoud & Raghda — Wedding Invitation' }],
   },
