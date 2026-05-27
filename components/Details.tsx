@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useLang, tx } from '@/lib/lang'
 import { Reveal } from './Reveal'
 
-const GOOGLE_CAL = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mahmoud+%26+Raghda+%E2%80%94+Wedding&dates=20260626T183000/20260627T000000&ctz=Africa%2FCairo&details=Wedding+at+6%3A30+PM.+Venue%3A+Taracina+Wedding+on+the+Nile%2C+Manial+Shiha%2C+Giza&location=Taracina+Wedding+on+the+Nile%2C+Manial+Shiha%2C+Giza'
+const GOOGLE_CAL = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mahmoud+%26+Raghda+%E2%80%94+Wedding&dates=20260626T180000/20260627T000000&ctz=Africa%2FCairo&details=Wedding+at+6%3A00+PM.+Venue%3A+Taracina+Wedding+on+the+Nile%2C+Manial+Shiha%2C+Giza&location=Taracina+Wedding+on+the+Nile%2C+Manial+Shiha%2C+Giza'
 
 function CalendarButton({ lang }: { lang: 'en' | 'ar' }) {
   const [isApple, setIsApple] = useState(false)
@@ -79,7 +79,7 @@ function GettingThereCard({ lang }: { lang: 'en' | 'ar' }) {
           {tx(lang, 'Manial Shiha, Giza', 'منيل شيحة، الجيزة')}
         </p>
         <p className="font-body text-walnut-muted text-[0.97rem] mb-5">
-          {tx(lang, 'Friday, June 26th · 6:30 PM', 'الجمعة ٢٦ يونيو · ٦:٣٠ بالليل')}
+          {tx(lang, 'Friday, June 26th · 6:00 PM', 'الجمعة ٢٦ يونيو · ٦:٠٠ بالليل')}
         </p>
 
         <CalendarButton lang={lang} />
