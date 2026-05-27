@@ -31,8 +31,9 @@ interface EditDraft {
   partySize:  number
 }
 
-export function AdminTable({ adminKey }: { adminKey: string }) {
-  const [rsvps,    setRsvps]   = useState<RsvpEntry[]>([])
+export function AdminTable({ adminKey, side }: { adminKey: string; side?: 'bride' | 'groom' }) {
+  const [allRsvps, setRsvps] = useState<RsvpEntry[]>([])
+  const rsvps = side ? allRsvps.filter(r => r.side === side) : allRsvps
   const [loading,  setLoading] = useState(true)
   const [busy,     setBusy]    = useState(false)
   const [flash,    setFlash]   = useState('')
@@ -147,19 +148,19 @@ export function AdminTable({ adminKey }: { adminKey: string }) {
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12 pb-8 border-b border-gold/20">
           <h1 className="font-heading font-light text-walnut" style={{ fontSize: '2.4rem', fontStyle: 'italic' }}>
-            RSVP Dashboard
+            {side === 'bride' ? "Bride's Dashboard" : side === 'groom' ? "Groom's Dashboard" : 'RSVP Dashboard'}
           </h1>
           <p className="text-walnut-muted text-sm mt-1 font-body">Mahmoud &amp; Raghda · Wedding Guest List</p>
         </div>
 
         <div className="flex gap-4 justify-center flex-wrap mb-10">
-          <StatCard value={stats.responses}          label="Total RSVPs"     />
-          <StatCard value={stats.total}              label="Total Guests"    />
-          <StatCard value={stats.brideTotal}         label="Bride's Side"    />
-          <StatCard value={stats.groomTotal}         label="Groom's Side"    />
-          <StatCard value={stats.solos}              label="Individual"      />
-          <StatCard value={stats.families}           label="Family Groups"   />
-          <StatCard value={TARGET - stats.total}     label="Remaining / 200" />
+          <StatCard value={stats.responses}      label="RSVPs"          />
+          <StatCard value={stats.total}          label="Total Guests"   />
+          <StatCard value={stats.solos}          label="Individual"     />
+          <StatCard value={stats.families}       label="Family Groups"  />
+          {!side && <StatCard value={stats.brideTotal}  label="Bride's Side"   />}
+          {!side && <StatCard value={stats.groomTotal}  label="Groom's Side"   />}
+          {!side && <StatCard value={TARGET - stats.total} label="Remaining / 200" />}
         </div>
 
         <div className="mb-8">
@@ -389,13 +390,15 @@ export function AdminTable({ adminKey }: { adminKey: string }) {
             >
               {loading ? 'Loading…' : 'Refresh'}
             </button>
-            <button
-              onClick={handleClear}
-              disabled={busy}
-              className="border border-rose/40 bg-rose/10 text-rose px-5 py-2.5 text-sm tracking-wide transition-all duration-300 hover:bg-rose/20 disabled:opacity-40"
-            >
-              {busy ? 'Clearing…' : 'Clear All RSVPs'}
-            </button>
+            {!side && (
+              <button
+                onClick={handleClear}
+                disabled={busy}
+                className="border border-rose/40 bg-rose/10 text-rose px-5 py-2.5 text-sm tracking-wide transition-all duration-300 hover:bg-rose/20 disabled:opacity-40"
+              >
+                {busy ? 'Clearing…' : 'Clear All RSVPs'}
+              </button>
+            )}
           </div>
         </div>
       </div>

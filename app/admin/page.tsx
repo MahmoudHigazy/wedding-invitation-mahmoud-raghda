@@ -9,10 +9,11 @@ interface Props {
 
 export default function AdminPage({ searchParams }: Props) {
   const adminKey = process.env.ADMIN_KEY ?? 'secret'
+  const key      = searchParams.key
 
-  if (searchParams.key !== adminKey) {
-    redirect('/')
-  }
+  if (key === 'mahmoud') return <AdminTable adminKey={adminKey} side="groom" />
+  if (key === 'raghda')  return <AdminTable adminKey={adminKey} side="bride" />
+  if (key !== adminKey)  redirect('/')
 
   return <AdminTable adminKey={adminKey} />
 }
