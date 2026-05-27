@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name:       'M & R Wedding',
     description:      'Wedding invitation — June 26, 2026',
     start_url:        '/',
-    display:          'standalone',
+    display:          'browser',
     background_color: '#FAF5ED',
     theme_color:      '#B8922C',
     icons: [
