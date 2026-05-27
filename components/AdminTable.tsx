@@ -33,7 +33,10 @@ interface EditDraft {
 
 export function AdminTable({ adminKey, side }: { adminKey: string; side?: 'bride' | 'groom' }) {
   const [allRsvps, setRsvps] = useState<RsvpEntry[]>([])
-  const rsvps = side ? allRsvps.filter(r => r.side === side) : allRsvps
+  const [filter, setFilter] = useState<'all' | 'bride' | 'groom'>('all')
+  const rsvps = side
+    ? allRsvps.filter(r => r.side === side)
+    : filter === 'all' ? allRsvps : allRsvps.filter(r => r.side === filter)
   const [loading,  setLoading] = useState(true)
   const [busy,     setBusy]    = useState(false)
   const [flash,    setFlash]   = useState('')
@@ -240,6 +243,24 @@ export function AdminTable({ adminKey, side }: { adminKey: string; side?: 'bride
             </button>
           )}
         </div>
+
+        {!side && (
+          <div className="flex gap-2 mb-4">
+            {(['all', 'groom', 'bride'] as const).map(f => (
+              <button
+                key={f}
+                onClick={() => setFilter(f)}
+                className={`font-heading text-[0.7rem] tracking-[2px] uppercase px-4 py-2 border transition-all duration-200 ${
+                  filter === f
+                    ? 'border-gold/60 bg-white/70 text-walnut'
+                    : 'border-gold/20 text-walnut-muted hover:border-gold/40'
+                }`}
+              >
+                {f === 'all' ? 'All' : f === 'groom' ? "Groom's Side" : "Bride's Side"}
+              </button>
+            ))}
+          </div>
+        )}
 
         {loading ? (
           <p className="text-center text-walnut-muted py-16 font-body">Loading…</p>
