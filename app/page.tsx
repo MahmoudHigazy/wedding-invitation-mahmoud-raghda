@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { HomeClient } from '@/components/HomeClient'
 
 interface Props {
@@ -19,5 +20,5 @@ export function generateMetadata({ searchParams }: Props): Metadata {
 }
 
 export default function Home() {
-  return <HomeClient />
+  return <Suspense><HomeClient /></Suspense>
 }
