@@ -109,13 +109,19 @@ export function RsvpSection() {
               >
                 {tx(lang, "You're confirmed!", 'اتأكدت!')}
               </h3>
-              <p className="font-body text-walnut-muted" style={{ lineHeight: lang === 'ar' ? '2.3' : '2' }}>
+              <p className="font-body text-walnut-muted mb-6" style={{ lineHeight: lang === 'ar' ? '2.3' : '2' }}>
                 {lang === 'en' ? (
                   <>Thank you — we cannot wait to celebrate with you.<br /><em>With love, Mahmoud &amp; Raghda</em></>
                 ) : (
                   <>شكراً — مستنيينك أوي.<br /><em>بكل الحب، محمود ورغدة</em></>
                 )}
               </p>
+              <a
+                href={`?info=1${lang === 'ar' ? '&lang=ar' : ''}`}
+                className="inline-flex items-center gap-2 border border-gold/40 bg-white/60 text-walnut px-5 py-2.5 font-heading text-[0.72rem] tracking-[2px] uppercase transition-all duration-300 hover:border-gold/70 hover:bg-white"
+              >
+                {tx(lang, 'Save the details', 'احفظ التفاصيل')}
+              </a>
             </div>
             </>
           ) : (
