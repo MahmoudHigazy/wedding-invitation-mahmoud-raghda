@@ -162,12 +162,10 @@ export function RsvpSection() {
                   <button type="button" className={attBtnCls(form.att === 'solo')}
                     onClick={() => setForm(f => ({ ...f, att: 'solo', partySize: '' }))}>
                     <span className="block font-semibold">{tx(lang, 'Just Me', 'لوحدي')}</span>
-                    <span className="block text-xs opacity-60 mt-0.5">{tx(lang, 'Individual', 'حضور فردي')}</span>
                   </button>
                   <button type="button" className={attBtnCls(form.att === 'family')}
                     onClick={() => setForm(f => ({ ...f, att: 'family' }))}>
                     <span className="block font-semibold">{tx(lang, 'With Family', 'مع العيلة')}</span>
-                    <span className="block text-xs opacity-60 mt-0.5">{tx(lang, 'Bring loved ones', 'جيب اللي بتحبه')}</span>
                   </button>
                 </div>
 
