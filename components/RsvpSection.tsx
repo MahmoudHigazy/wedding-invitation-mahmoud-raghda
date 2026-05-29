@@ -172,7 +172,7 @@ export function RsvpSection() {
                 {form.att === 'family' && (
                   <div className="mt-4">
                     <label className="block text-[0.68rem] tracking-[4px] uppercase text-walnut mb-2 font-heading">
-                      {tx(lang, 'Number of guests (including you)', 'عدد الأفراد (انت جوا)')}
+                      {tx(lang, 'Number of guests (including you)', 'عدد الأفراد (بيك)')}
                     </label>
                     <input
                       type="number" min="2" max="30"
