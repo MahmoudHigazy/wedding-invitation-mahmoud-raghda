@@ -178,7 +178,7 @@ export function RsvpSection() {
                       type="number" min="2" max="30"
                       value={form.partySize}
                       onChange={e => setForm(f => ({ ...f, partySize: e.target.value }))}
-                      placeholder="e.g. 4"
+                      placeholder="e.g. 2"
                       className={inputCls}
                     />
                   </div>
