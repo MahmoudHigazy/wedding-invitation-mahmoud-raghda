@@ -79,7 +79,7 @@ function GettingThereCard({ lang }: { lang: 'en' | 'ar' }) {
           {tx(lang, 'Manial Shiha, Giza', 'منيل شيحة، الجيزة')}
         </p>
         <p className="font-body text-walnut-muted text-[0.97rem] mb-5">
-          {tx(lang, 'Friday, June 26th · 5:30 PM', 'الجمعة ٢٦ يونيو · ٥:٣٠ بالليل')}
+          {tx(lang, 'Friday, June 26th · 5:30 PM', 'الجمعة ٢٦ يونيو · ٥:٣٠ مساءً')}
         </p>
 
         <CalendarButton lang={lang} />
