@@ -23,7 +23,7 @@ export function HomeClient() {
       <Particles />
       <LangToggle />
       <main>
-        <Hero />
+        <Hero infoOnly={infoOnly} />
         <Divider />
         <Details />
         {!infoOnly && (
