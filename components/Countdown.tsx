@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import type { Lang } from '@/lib/lang'
 import { tx } from '@/lib/lang'
 
-const WEDDING = new Date('2026-06-26T18:00:00').getTime()
+const WEDDING = new Date('2026-06-26T17:30:00').getTime()
 
 function pad(n: number) { return String(n).padStart(2, '0') }
 

@@ -107,14 +107,12 @@ export function RsvpSection() {
                 className="font-heading font-light text-walnut text-2xl mb-3"
                 style={{ fontStyle: lang === 'en' ? 'italic' : 'normal' }}
               >
-                {tx(lang, "You're confirmed!", 'اتأكدت!')}
+                {tx(lang, "You're confirmed!", 'كده تمام!')}
               </h3>
               <p className="font-body text-walnut-muted mb-6" style={{ lineHeight: lang === 'ar' ? '2.3' : '2' }}>
                 {lang === 'en' ? (
                   <>Thank you — we cannot wait to celebrate with you.<br /><em>With love, Mahmoud &amp; Raghda</em></>
-                ) : (
-                  <>شكراً — مستنيينك أوي.<br /><em>بكل الحب، محمود ورغدة</em></>
-                )}
+                ) : <>مستنينك.<br /><em>محمود ورغدة</em></>}
               </p>
               <a
                 href={`?info=1${lang === 'ar' ? '&lang=ar' : ''}`}
