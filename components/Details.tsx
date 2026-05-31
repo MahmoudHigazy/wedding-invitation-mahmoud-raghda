@@ -91,6 +91,13 @@ function GettingThereCard({ lang }: { lang: 'en' | 'ar' }) {
           {tx(lang, 'Getting There', 'إزاي توصل')}
         </h3>
 
+        <p className="font-body text-walnut-muted text-[0.9rem] mb-5 border border-gold/20 bg-parchment-mid/60 px-4 py-3" dir="rtl" style={{ lineHeight: '2.2', letterSpacing: 0 }}>
+          عشان توصل للقاعة، عندك طريقين:<br />
+          <br />
+          <strong className="text-walnut">منيل شيحة</strong> — تركن عربيتك في باركينج القاعة، بس خد بالك الطريق في الآخر بيكون مكسر شوية<br />
+          <strong className="text-walnut">كورنيش المعادي</strong> — تركن عربيتك في باركينج عالكورنيش وتاخد المركب اللي بيوصّل لناحية القاعة، المركب مجانية ومش بتاخد أكتر من ١٠ دقايق
+        </p>
+
         <div className="flex gap-2 mb-5">
           {(['maadi', 'giza'] as const).map(key => (
             <button
