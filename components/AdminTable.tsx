@@ -147,7 +147,7 @@ export function AdminTable({ adminKey, side }: { adminKey: string; side?: 'bride
   }
 
   return (
-    <div className="min-h-screen bg-parchment px-6 py-16 text-walnut">
+    <div dir="ltr" className="min-h-screen bg-parchment px-6 py-16 text-walnut">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12 pb-8 border-b border-gold/20">
           <h1 className="font-heading font-light text-walnut" style={{ fontSize: '2.4rem', fontStyle: 'italic' }}>
