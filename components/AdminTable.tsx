@@ -32,6 +32,7 @@ interface EditDraft {
 }
 
 export function AdminTable({ adminKey, side }: { adminKey: string; side?: 'bride' | 'groom' }) {
+  const readOnly = !!side
   const [allRsvps, setRsvps] = useState<RsvpEntry[]>([])
   const [filter, setFilter] = useState<'all' | 'bride' | 'groom'>('all')
   const rsvps = side
@@ -332,22 +333,24 @@ export function AdminTable({ adminKey, side }: { adminKey: string; side?: 'bride
                           </td>
                           <td className="px-5 py-4 text-walnut-muted text-xs">{new Date(r.at).toLocaleString()}</td>
                           <td className="px-5 py-4">
-                            <div className="flex gap-2">
-                              <button
-                                onClick={() => handleSave(r.id)}
-                                disabled={busy}
-                                className="border border-gold/40 bg-gold/10 text-walnut px-3 py-1 text-xs tracking-wide transition-all duration-300 hover:bg-gold/20 disabled:opacity-40"
-                              >
-                                Save
-                              </button>
-                              <button
-                                onClick={cancelEdit}
-                                disabled={busy}
-                                className="border border-gold/20 text-walnut-muted px-3 py-1 text-xs tracking-wide transition-all duration-300 hover:bg-parchment-mid disabled:opacity-40"
-                              >
-                                Cancel
-                              </button>
-                            </div>
+                            {!readOnly && (
+                              <div className="flex gap-2">
+                                <button
+                                  onClick={() => handleSave(r.id)}
+                                  disabled={busy}
+                                  className="border border-gold/40 bg-gold/10 text-walnut px-3 py-1 text-xs tracking-wide transition-all duration-300 hover:bg-gold/20 disabled:opacity-40"
+                                >
+                                  Save
+                                </button>
+                                <button
+                                  onClick={cancelEdit}
+                                  disabled={busy}
+                                  className="border border-gold/20 text-walnut-muted px-3 py-1 text-xs tracking-wide transition-all duration-300 hover:bg-parchment-mid disabled:opacity-40"
+                                >
+                                  Cancel
+                                </button>
+                              </div>
+                            )}
                           </td>
                         </>
                       ) : (
@@ -374,22 +377,24 @@ export function AdminTable({ adminKey, side }: { adminKey: string; side?: 'bride
                           <td className="px-5 py-4">{r.partySize} {r.partySize === 1 ? 'person' : 'people'}</td>
                           <td className="px-5 py-4 text-walnut-muted text-xs">{new Date(r.at).toLocaleString()}</td>
                           <td className="px-5 py-4">
-                            <div className="flex gap-2">
-                              <button
-                                onClick={() => startEdit(r)}
-                                disabled={busy || editId !== null}
-                                className="border border-gold/40 bg-gold/10 text-walnut px-3 py-1 text-xs tracking-wide transition-all duration-300 hover:bg-gold/20 disabled:opacity-40"
-                              >
-                                Edit
-                              </button>
-                              <button
-                                onClick={() => handleDelete(r.id, r.name)}
-                                disabled={busy || editId !== null}
-                                className="border border-rose/40 bg-rose/10 text-rose px-3 py-1 text-xs tracking-wide transition-all duration-300 hover:bg-rose/20 disabled:opacity-40"
-                              >
-                                Delete
-                              </button>
-                            </div>
+                            {!readOnly && (
+                              <div className="flex gap-2">
+                                <button
+                                  onClick={() => startEdit(r)}
+                                  disabled={busy || editId !== null}
+                                  className="border border-gold/40 bg-gold/10 text-walnut px-3 py-1 text-xs tracking-wide transition-all duration-300 hover:bg-gold/20 disabled:opacity-40"
+                                >
+                                  Edit
+                                </button>
+                                <button
+                                  onClick={() => handleDelete(r.id, r.name)}
+                                  disabled={busy || editId !== null}
+                                  className="border border-rose/40 bg-rose/10 text-rose px-3 py-1 text-xs tracking-wide transition-all duration-300 hover:bg-rose/20 disabled:opacity-40"
+                                >
+                                  Delete
+                                </button>
+                              </div>
+                            )}
                           </td>
                         </>
                       )}
