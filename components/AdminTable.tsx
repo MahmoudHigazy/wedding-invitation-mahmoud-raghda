@@ -59,14 +59,14 @@ export function AdminTable({ adminKey, side }: { adminKey: string; side?: 'bride
 
   useEffect(() => { fetchRsvps() }, [fetchRsvps])
 
-  const TARGET = 200
+  const TARGET = filter === 'all' ? 200 : 100
   const stats: Stats = {
     responses:  rsvps.length,
     total:      rsvps.reduce((s, r) => s + r.partySize, 0),
     solos:      rsvps.filter(r => r.attendance === 'solo').length,
     families:   rsvps.filter(r => r.attendance === 'family').length,
-    brideTotal: rsvps.filter(r => r.side === 'bride').reduce((s, r) => s + r.partySize, 0),
-    groomTotal: rsvps.filter(r => r.side === 'groom').reduce((s, r) => s + r.partySize, 0),
+    brideTotal: allRsvps.filter(r => r.side === 'bride').reduce((s, r) => s + r.partySize, 0),
+    groomTotal: allRsvps.filter(r => r.side === 'groom').reduce((s, r) => s + r.partySize, 0),
   }
 
   function startEdit(r: RsvpEntry) {
@@ -164,7 +164,7 @@ export function AdminTable({ adminKey, side }: { adminKey: string; side?: 'bride
           <StatCard value={stats.families}       label="Family Groups"  />
           {!side && <StatCard value={stats.brideTotal}  label="Bride's Side"   />}
           {!side && <StatCard value={stats.groomTotal}  label="Groom's Side"   />}
-          {!side && <StatCard value={TARGET - stats.total} label="Remaining / 200" />}
+          {!side && <StatCard value={TARGET - stats.total} label={`Remaining / ${TARGET}`} />}
         </div>
 
         <div className="mb-8">
