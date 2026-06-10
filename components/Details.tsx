@@ -95,8 +95,8 @@ function GettingThereCard({ lang }: { lang: 'en' | 'ar' }) {
         <p className="font-body text-walnut-muted text-[0.9rem] mb-5 border border-gold/20 bg-parchment-mid/60 px-4 py-3" dir="rtl" style={{ lineHeight: '2.2', letterSpacing: 0 }}>
           عشان توصل للقاعة، عندك طريقين:<br />
           <br />
-          <strong className="text-walnut">منيل شيحة</strong> — تركن عربيتك في باركينج القاعة، بس خد بالك الطريق في الآخر بيكون مكسر شوية<br />
-          <strong className="text-walnut">كورنيش المعادي</strong> — تركن عربيتك في باركينج عالكورنيش، وادخل من <strong className="text-walnut">بوابة ٣ نهر المرسي الخالد</strong> واسأل على قاعة تراسينا، هيقولولك المكان اللي هتركب منه المركب. المركب مجانية ومش بتاخد أكتر من ١٠ دقايق<br />
+          <strong className="text-walnut">منيل شيحة</strong> — تركن عربيتك في باركينج القاعة<br />
+          <strong className="text-walnut">كورنيش المعادي</strong> <span className="text-gold text-[0.8rem]">(مُستحسن)</span> — تركن عربيتك في باركينج عالكورنيش، وادخل من <strong className="text-walnut">بوابة ٣ مرسى النهر الخالد</strong> واسأل على قاعة تراسينا، هيقولولك المكان اللي هتركب منه المركب. المركب مجانية ومش بتاخد أكتر من ١٠ دقايق<br />
         </p>
 
         <div className="flex gap-2 mb-5">
