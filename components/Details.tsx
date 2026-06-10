@@ -4,6 +4,28 @@ import { useEffect, useState } from 'react'
 import { useLang, tx } from '@/lib/lang'
 import { Reveal } from './Reveal'
 
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false)
+  function copy() {
+    navigator.clipboard.writeText(text)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+  return (
+    <button
+      onClick={copy}
+      className="inline-flex items-center justify-center border border-gold/40 bg-white/50 px-3 py-0.5 text-walnut hover:bg-white/80 transition-colors self-stretch"
+      style={{ letterSpacing: 0 }}
+      title="Copy number"
+    >
+      {copied
+        ? <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        : <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      }
+    </button>
+  )
+}
+
 const GOOGLE_CAL = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mahmoud+%26+Raghda+%E2%80%94+Wedding&dates=20260626T173000/20260627T000000&ctz=Africa%2FCairo&details=Wedding+at+5%3A30+PM.+Venue%3A+Taracina+Wedding+on+the+Nile%2C+Manial+Shiha%2C+Giza&location=Taracina+Wedding+on+the+Nile%2C+Manial+Shiha%2C+Giza'
 
 function CalendarButton({ lang }: { lang: 'en' | 'ar' }) {
@@ -95,7 +117,14 @@ function GettingThereCard({ lang }: { lang: 'en' | 'ar' }) {
           عشان توصل للقاعة، عندك طريقين:<br />
           <br />
           <strong className="text-walnut">منيل شيحة</strong> — تركن عربيتك في باركينج القاعة، بس خد بالك الطريق في الآخر بيكون مكسر شوية<br />
-          <strong className="text-walnut">كورنيش المعادي</strong> — تركن عربيتك في باركينج عالكورنيش وتاخد المركب اللي بيوصّل لناحية القاعة، المركب مجانية ومش بتاخد أكتر من ١٠ دقايق
+          <strong className="text-walnut">كورنيش المعادي</strong> — تركن عربيتك في باركينج عالكورنيش، وادخل من <strong className="text-walnut">بوابة ٣ نهر المرسي الخالد</strong> واسأل على قاعة تراسينا، هيقولولك المكان اللي هتركب منه المركب. المركب مجانية ومش بتاخد أكتر من ١٠ دقايق<br />
+          للتواصل مع المراكبي أبو رامي في حالة الضرورة بس:{' '}
+          <span className="inline-flex items-center gap-1" style={{ direction: 'ltr' }}>
+            <a href="tel:+201156821410" className="inline-flex items-center gap-1 border border-gold/40 bg-white/50 px-3 py-0.5 text-walnut font-body text-[0.85rem] hover:bg-white/80 transition-colors" style={{ letterSpacing: 0, textDecoration: 'none' }}>
+              📞 01156821410
+            </a>
+            <CopyButton text="01156821410" />
+          </span>
         </p>
 
         <div className="flex gap-2 mb-5">
