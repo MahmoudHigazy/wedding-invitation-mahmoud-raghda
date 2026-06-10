@@ -96,6 +96,11 @@ function GettingThereCard({ lang }: { lang: 'en' | 'ar' }) {
           عشان توصل للقاعة، عندك طريقين:<br />
           <br />
           <strong className="text-walnut">منيل شيحة</strong> — تركن عربيتك في باركينج القاعة<br />
+          <div className="flex items-center gap-2 my-1" dir="rtl">
+            <div className="flex-1 h-px bg-gold/20" />
+            <span className="text-walnut-muted text-[0.8rem]">أو</span>
+            <div className="flex-1 h-px bg-gold/20" />
+          </div>
           <strong className="text-walnut">كورنيش المعادي</strong> <span className="text-gold text-[0.8rem]">(مُستحسن)</span> — تركن عربيتك في باركينج عالكورنيش، وادخل من <strong className="text-walnut">بوابة ٣ مرسى النهر الخالد</strong> واسأل على قاعة تراسينا، هيقولولك المكان اللي هتركب منه المركب. المركب مجانية ومش بتاخد أكتر من ١٠ دقايق<br />
         </p>
 
