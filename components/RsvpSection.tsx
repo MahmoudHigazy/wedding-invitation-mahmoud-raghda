@@ -89,9 +89,9 @@ export function RsvpSection() {
           <div className="rule-gold mt-4 mb-6 max-w-[100px] mx-auto" />
           <p className="font-body text-walnut-muted text-base" style={{ lineHeight: lang === 'ar' ? '2.3' : '2' }}>
             {lang === 'en' ? (
-              <>Please confirm your attendance by <strong className="text-walnut">June 15th, 2026</strong>.</>
+              <>Please confirm your attendance by <strong className="text-walnut">June 20th, 2026</strong>.</>
             ) : (
-              <>أكدولنا حضوركم قبل <strong className="text-walnut">١٥ يونيو ٢٠٢٦</strong>.</>
+              <>أكدولنا حضوركم قبل <strong className="text-walnut">٢٠ يونيو ٢٠٢٦</strong>.</>
             )}
           </p>
         </Reveal>
